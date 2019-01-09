@@ -3,8 +3,28 @@ title: "lab1"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+```{r setup, include = FALSE}
+
+library("tidyverse")
+library("rio")
+library("here")
+library("janitor")
+library("knitr")
+knitr::opts_chunk$set(warning = FALSE,
+                      message = FALSE,
+                      error = TRUE,
+                      fig.width = 6.5,
+                      fig.height = 8
+                      )
+theme_set(theme_minimal(base_size = 8))
+
 ```
 
+```{r load_data, include = FALSE}
+df <- import(here("data", "rstats_tweets.rds"),
+             setclass = "tbl_df")
 
+head(df)
+
+```
