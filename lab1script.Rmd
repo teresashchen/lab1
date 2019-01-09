@@ -30,6 +30,30 @@ head(df)
 ```
 
 
+#Commit2
+```{r commit2}
+
+subset <- df %>%
+  count(screen_name) %>%
+  arrange(desc(n)) %>%
+  slice (1:25)
+
+#str(subset)
+
+subset %>%
+  mutate(screen_name = as.factor(screen_name),
+         screen_name = forcats::fct_reorder(screen_name, n)) %>%
+  ggplot(aes(x = screen_name, y = n)) + 
+  geom_col() +
+  coord_flip()
+
+str(subset)
+
+```
+
+
+
+
 
 ```{r commit4 }
 
