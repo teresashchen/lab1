@@ -75,4 +75,21 @@ ggplot(aes(x = month, y = n)) +
 ```
 
 
+```{r commit5, fig.width=10, fig.height=10}
+subset4 %>% 
+ggplot(aes(x = month, y = n)) +
+  geom_line(color = "gray40",
+            size = 3) +
+  geom_smooth(method = "auto",
+              se = FALSE,
+              color = "magenta",
+              size = 3) +
+  theme_minimal(base_size = 20) +
+  geom_area(alpha = 0.3, fill = "cornflowerblue") +
+  labs(x = "Year(data summarized by month)",
+       y = "Number of #rstats tweets",
+       caption = "Data from Mike Kearny, distributed via #tidytuesday")
+
+
+```
 
