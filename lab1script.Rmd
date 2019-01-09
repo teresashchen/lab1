@@ -22,7 +22,7 @@ theme_set(theme_minimal(base_size = 8))
 ```
 
 ```{r load_data, include = FALSE}
-df <- import(here("data", "rstats_tweets.rds"),
+df <- import(here::here("data", "rstats_tweets.rds"),
              setclass = "tbl_df")
 
 head(df)
@@ -31,7 +31,7 @@ head(df)
 
 
 #Commit2
-```{r load_data, include = FALSE}
+```{r commit2}
 
 subset <- df %>%
   count(screen_name) %>%
