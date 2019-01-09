@@ -52,9 +52,36 @@ str(subset)
 ```
 
 
+# Commit3
+```{r commit3,fig.width = 10,fig.height = 10}
 
 
+subset <- df %>%
+  count(screen_name) %>%
+  arrange(desc(n)) %>%
+  slice (1:25)
 
+#str(subset)
+
+
+subset %>%
+  mutate(screen_name = as.factor(screen_name),
+         screen_name = forcats::fct_reorder(screen_name, n)) %>%
+  ggplot(aes(x = screen_name, y = n)) + 
+  geom_col(fill = "cornflowerblue") +
+  coord_flip() +
+  labs(title = "Most prolific #rstats tweeters",
+       subtitle = "Top 25 screen names displayed",
+       x = "Twitter Screen Name",
+       y = "Count
+            Data from Mike Kearny, distrubted via #tidytuesday") +
+  theme_minimal(base_size = 11)
+
+
+```
+
+
+# Commit4
 ```{r commit4 }
 
 
