@@ -1,7 +1,13 @@
 ---
-title: "lab1"
-output: html_document
+title: "EDLD610 Winter19 Lab1"
+author: Jeongim, Ting-fen, Teresa
+output: 
+  html_document:
+    toc: true
+    toc_float: true
 ---
+
+
 
 
 ```{r setup, include = FALSE}
@@ -17,20 +23,21 @@ knitr::opts_chunk$set(warning = FALSE,
                       fig.width = 6.5,
                       fig.height = 8
                       )
-theme_set(theme_minimal(base_size = 8))
+
 
 ```
 
+# Commit 1
 ```{r load_data}
 df <- import(here::here("data", "rstats_tweets.rds"),
              setclass = "tbl_df")
 
-head(df)
+# head(df, n = 10)
 
 ```
 
 
-#Commit2
+# Commit 2
 ```{r commit2}
 
 subset <- df %>%
@@ -47,12 +54,12 @@ subset %>%
   geom_col() +
   coord_flip()
 
-str(subset)
+# str(subset)
 
 ```
 
 
-# Commit3
+# Commit 3
 ```{r commit3,fig.width = 10,fig.height = 10}
 
 
@@ -81,7 +88,7 @@ subset %>%
 ```
 
 
-# Commit4
+# Commit 4
 ```{r commit4 }
 
 
@@ -91,7 +98,7 @@ subset4 <- df %>%
   count(month) %>% 
   arrange(month)
 
-View(subset4)
+# View(subset4)
 
 subset4 %>% 
 ggplot(aes(x = month, y = n)) +
@@ -102,18 +109,20 @@ ggplot(aes(x = month, y = n)) +
 ```
 
 
+# Commit 5
 ```{r commit5, fig.width=10, fig.height=10}
 subset4 %>% 
 ggplot(aes(x = month, y = n)) +
   geom_line(color = "gray40",
-            size = 3) +
+            size = 2) +
   geom_smooth(method = "auto",
               se = FALSE,
               color = "magenta",
-              size = 3) +
+              size = 2) +
   theme_minimal(base_size = 20) +
   geom_area(alpha = 0.3, fill = "cornflowerblue") +
-  labs(x = "Year(data summarized by month)",
+  labs(title = "Growth of the #rstats hashtag on twitter over time", 
+       x = "Year(data summarized by month)",
        y = "Number of #rstats tweets",
        caption = "Data from Mike Kearny, distributed via #tidytuesday")
 
