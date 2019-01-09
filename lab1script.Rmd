@@ -9,8 +9,8 @@ output: html_document
 library("tidyverse")
 library("rio")
 library("here")
-library("janitor")
 library("knitr")
+library("lubridate")
 knitr::opts_chunk$set(warning = FALSE,
                       message = FALSE,
                       error = TRUE,
@@ -21,10 +21,34 @@ theme_set(theme_minimal(base_size = 8))
 
 ```
 
-```{r load_data, include = FALSE}
-df <- import(here("data", "rstats_tweets.rds"),
+```{r load_data}
+df <- import(here::here("data", "rstats_tweets.rds"),
              setclass = "tbl_df")
 
 head(df)
 
 ```
+
+
+
+```{r commit4 }
+
+
+subset4 <- df %>% 
+  mutate(month = lubridate::round_date(created_at, unit = "month")) %>% 
+  filter(month < lubridate::as_datetime("2019-01-01 00:00:00")) %>% 
+  count(month) %>% 
+  arrange(month)
+
+View(subset4)
+
+subset4 %>% 
+ggplot(aes(x = month, y = n)) +
+  geom_line() +
+  geom_smooth() 
+  
+
+```
+
+
+
